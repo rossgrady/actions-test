@@ -53,6 +53,9 @@ The objective of *Continuous Testing* is to achieve constant feedback on your ch
           ##########################
           - name: Checkout Code
             uses: actions/checkout@v2
+            with:
+              # Full git history is needed to get a proper list of changed files within `super-linter`
+              fetch-depth: 0
 
           ################################
           # Run Linter against code base #
@@ -61,6 +64,7 @@ The objective of *Continuous Testing* is to achieve constant feedback on your ch
             uses: github/super-linter@v3
             env:
               VALIDATE_ALL_CODEBASE: false
+              DEFAULT_BRANCH: main
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     ```
 
